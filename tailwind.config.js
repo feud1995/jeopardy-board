@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        jeopardyBlue: {
+          DEFAULT: "#01169F"
+        },
+        moneyYellow: {
+          DEFAULT: "#F2BA51"
+        }
+      },
+      fontFamily: {
+        baskerville: 'Libre Baskerville',
+        roboto: "Roboto Condensed"
+      }
+    },
   },
   plugins: [],
 }
