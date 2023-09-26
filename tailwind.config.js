@@ -17,7 +17,7 @@ export default {
       fontFamily: {
         baskerville: 'Libre Baskerville',
         roboto: "Roboto Condensed"
-      }
+      },
     },
   },
   plugins: [],

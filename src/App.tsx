@@ -25,9 +25,8 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ company, question, onQuesti
 
   return (
     <div
-      className={twMerge(cardClasses, `text-moneyYellow font-roboto text-4xl font-bold`)}
+      className={twMerge(cardClasses, `text-moneyYellow font-roboto text-4xl font-bold shadow cursor-pointer`)}
       onClick={handleQuestionClicked}
-      style={{ textShadow: "4px 4px 4px rgba(0, 0, 0, 0.75)" }}
     >
       {opened === false && <h2>${question.value}</h2>}
     </div>
@@ -64,7 +63,7 @@ function App() {
   return (
     <>
       <div
-        className="w-screen h-screen flex items-center justify-center bg-center"
+        className="w-screen h-screen flex items-center justify-center bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${board})` }}
       >
         <div className="grid grid-cols-4 gap-4 bg-black pt-12">
@@ -79,12 +78,11 @@ function App() {
         </div>
       </div>
       {current && (
-        <div onClick={() => setCurrent(undefined)} className="absolute top-0 left-0 right-0 bottom-0">
+        <div onClick={() => setCurrent(undefined)} className="absolute top-0 left-0 right-0 bottom-0 cursor-pointer">
           <div
             className="h-screen w-sreen font-baskerville bg-jeopardyBlue flex flex-col justify-center text-center gap-10 px-[200px] font-bold text-3xl"
-            style={{ textShadow: "8px 8px 4px #000" }}
           >
-            <h1>{current.question.question}</h1>
+            <h1 className="shadow">{current.question.question}</h1>
           </div>
         </div>
       )}
