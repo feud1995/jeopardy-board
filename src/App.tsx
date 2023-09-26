@@ -19,13 +19,20 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ company, question, onQuesti
   const [opened, setOpened] = useState(false);
 
   const handleQuestionClicked = () => {
+    if (opened) {
+      return;
+    }
+
     onQuestionClicked({ company, question });
     setOpened(true);
   };
 
   return (
     <div
-      className={twMerge(cardClasses, `text-moneyYellow font-roboto text-4xl font-bold cursor-pointer textShadow`)}
+      className={twMerge(
+        cardClasses,
+        `text-moneyYellow font-roboto text-4xl font-bold textShadow ${opened ? "cursor-default" : "cursor-pointer"}`
+      )}
       onClick={handleQuestionClicked}
     >
       {opened === false && <h2>${question.value}</h2>}
@@ -77,7 +84,7 @@ function App() {
           ))}
         </div>
       </div>
-      <div className={`transition-all duration-500 ease-in ${current ? "opacity-100" : "opacity-0"}`}>
+      <div className={`transition-all duration-400 ease-in ${current ? "opacity-100" : "opacity-0"}`}>
         {current && (
           <div
             onClick={() => setCurrent(undefined)}
