@@ -42,7 +42,7 @@ interface QuestionColumnProps {
 const QuestionColumn: React.FC<QuestionColumnProps> = ({ company, questions, onQuestionClicked }) => {
   return (
     <div className="grid grid-rows-4 gap-4">
-      <div className={cardClasses}>
+      <div className={twMerge(cardClasses, "cursor-default")}>
         <h1>{company}</h1>
       </div>
       {questions.map((q) => (
@@ -77,15 +77,18 @@ function App() {
           ))}
         </div>
       </div>
-      {current && (
-        <div onClick={() => setCurrent(undefined)} className="absolute top-0 left-0 right-0 bottom-0 cursor-pointer">
+      <div className={`transition-all duration-500 ease-in ${current ? "opacity-100" : "opacity-0"}`}>
+        {current && (
           <div
-            className="h-screen w-sreen font-baskerville bg-jeopardyBlue flex flex-col justify-center text-center gap-10 px-[200px] font-bold text-3xl textShadow-lg"
+            onClick={() => setCurrent(undefined)}
+            className={`absolute top-0 left-0 right-0 bottom-0 cursor-pointer `}
           >
-            <h1>{current.question.question}</h1>
+            <div className="h-screen w-sreen font-baskerville bg-jeopardyBlue flex flex-col justify-center text-center gap-10 px-[200px] font-bold text-3xl textShadow-lg">
+              {current && <h1>{current.question.question}</h1>}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }
