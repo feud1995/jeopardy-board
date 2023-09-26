@@ -25,7 +25,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ company, question, onQuesti
 
   return (
     <div
-      className={twMerge(cardClasses, `text-moneyYellow font-roboto text-4xl font-bold shadow cursor-pointer`)}
+      className={twMerge(cardClasses, `text-moneyYellow font-roboto text-4xl font-bold cursor-pointer textShadow`)}
       onClick={handleQuestionClicked}
     >
       {opened === false && <h2>${question.value}</h2>}
@@ -80,9 +80,9 @@ function App() {
       {current && (
         <div onClick={() => setCurrent(undefined)} className="absolute top-0 left-0 right-0 bottom-0 cursor-pointer">
           <div
-            className="h-screen w-sreen font-baskerville bg-jeopardyBlue flex flex-col justify-center text-center gap-10 px-[200px] font-bold text-3xl"
+            className="h-screen w-sreen font-baskerville bg-jeopardyBlue flex flex-col justify-center text-center gap-10 px-[200px] font-bold text-3xl textShadow-lg"
           >
-            <h1 className="shadow">{current.question.question}</h1>
+            <h1>{current.question.question}</h1>
           </div>
         </div>
       )}
