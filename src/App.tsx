@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { JeopardyQuestion, questions } from "./questions";
 
 import board from "./assets/board.jpeg";
@@ -64,8 +64,38 @@ const QuestionColumn: React.FC<QuestionColumnProps> = ({ company, questions, onQ
   );
 };
 
+const contestantObject: { [key: string]: string } = {
+  a: "Cygni",
+  s: "Sentor",
+  d: "Accenture",
+  f: "Avanade",
+};
+
 function App() {
   const [current, setCurrent] = useState<{ company: string; question: JeopardyQuestion } | undefined>();
+  const [contestant, setContestant] = useState<string | undefined>();
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (contestant) {
+        return;
+      }
+
+      const { key } = e;
+      const next = contestantObject[key];
+
+      if (next) {
+        setContestant(next);
+      }
+    },
+    [contestant, setContestant]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
     <>
@@ -96,6 +126,16 @@ function App() {
           </div>
         )}
       </div>
+      {contestant && (
+        <div
+          onClick={() => setContestant(undefined)}
+          className={`absolute top-0 left-0 right-0 bottom-0 cursor-pointer `}
+        >
+          <div className="h-screen w-sreen font-baskerville bg-jeopardyBlue flex flex-col justify-center text-center gap-10 px-[200px] font-bold text-3xl textShadow-lg">
+            <h1>{contestant}</h1>
+          </div>
+        </div>
+      )}
     </>
   );
 }
