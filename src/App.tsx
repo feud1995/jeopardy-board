@@ -7,7 +7,7 @@ import "./App.css";
 import { twMerge } from "tailwind-merge";
 
 const cardClasses =
-  "w-[280px] h-[160px] font-roboto font-bold aspect-video text-white bg-jeopardyBlue flex items-center justify-center p-4";
+  "w-[285px] h-[165px] font-roboto font-bold aspect-video text-white bg-jeopardyBlue flex items-center justify-center p-4";
 
 interface QuestionCardProps {
   company: string;
@@ -65,7 +65,7 @@ const QuestionColumn: React.FC<QuestionColumnProps> = ({ company, questions, onQ
 };
 
 const contestantObject: { [key: string]: string } = {
-  a: "Cygni",
+  a: "Cygni (Heidi)",
   s: "Sentor",
   d: "Accenture",
   f: "Avanade",
@@ -103,7 +103,7 @@ function App() {
         className="w-screen h-screen flex items-center justify-center bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${board})` }}
       >
-        <div className="grid grid-cols-4 gap-4 bg-black pt-12">
+        <div className="grid grid-cols-4 gap-4 bg-black mt-[4.7rem]">
           {Object.entries(questions).map(([company, questions]) => (
             <QuestionColumn
               key={company}
